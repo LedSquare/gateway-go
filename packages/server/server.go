@@ -1,10 +1,13 @@
 package app_server
 
 import (
+	"gateway-go/internal/routes"
 	"gateway-go/packages/config"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/go-chi/chi/v5"
 )
 
 func Make() *http.Server {
@@ -20,10 +23,14 @@ func Make() *http.Server {
 		log.Fatalf("wrong format server.idle_timeout: %v", err)
 	}
 
+	r := chi.NewRouter()
+	routes.Register(r)
+
 	return &http.Server{
 		Addr:         cfg.GetString("server.address"),
 		ReadTimeout:  timeout,
 		WriteTimeout: timeout,
 		IdleTimeout:  idleTimeout,
+		Handler:      r,
 	}
 }
