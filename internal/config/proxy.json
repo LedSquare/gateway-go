@@ -1,0 +1,19 @@
+{
+  "proxy": {
+    "allowed_headers": [
+      "accept",
+      "content-type",
+      "content-disposition",
+      "x-pagination-current-page",
+      "x-pagination-page-count",
+      "x-pagination-per-page",
+      "x-pagination-total-count",
+      "access-control-expose-headers"
+    ],
+    "services": {
+      "cart": {
+        "url": "http://nginx/cart"
+      }
+    }
+  }
+}

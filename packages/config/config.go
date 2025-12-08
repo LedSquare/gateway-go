@@ -18,6 +18,7 @@ var (
 	errYamlNotFound          = errors.New("yaml file is not found")
 	paths           []string = []string{
 		"config.json",
+		"internal/config/proxy.json",
 	}
 	once sync.Once
 	cfg  *viper.Viper
