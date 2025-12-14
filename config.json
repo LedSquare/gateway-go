@@ -1,7 +1,7 @@
 {
   "server": {
     "address": "{{ or .SERVER_ADDR `localhost:8000`}}",
-    "timeout": "{{ or .SERVER_TIMEOUT `4s`}}",
+    "timeout": "{{ or .SERVER_TIMEOUT `10s`}}",
     "idle_timeout": "{{ or .SERVER_IDLE_TIMEOUT `60s`}}"
   },
   "app_env": "{{ or .APP_ENV  `local`}}",

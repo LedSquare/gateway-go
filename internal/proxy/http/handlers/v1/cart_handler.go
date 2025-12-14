@@ -1,27 +1,27 @@
-package cart
+package v1_handlers
 
 import (
-	"gateway-go/internal/proxy/http/handler/v1/proxy"
+	"gateway-go/internal/proxy/http/handlers"
 	"gateway-go/packages/config"
 	"net/http"
 )
 
 type CartHandler struct {
-	handler *proxy.Handler
+	handler *handlers.Handler
 }
 
 func NewCartHandler() *CartHandler {
 	cfg := config.Load()
 	return &CartHandler{
-		proxy.NewController(
-			cfg.GetString("proxy.cart.url"),
+		handlers.NewHandler(
+			cfg.GetString("proxy.services.cart.url"),
 			cfg.GetStringSlice("proxy.allowed_headers"),
+			"cart_handler",
+			"v1",
 		),
 	}
 }
 
 func (h *CartHandler) Send(w http.ResponseWriter, r *http.Request) {
-	if err := h.handler.Send(w, r); err != nil {
-		http.Error(w, err.Error(), http.StatusBadGateway)
-	}
+	h.handler.Send(w, r)
 }

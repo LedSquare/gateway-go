@@ -23,7 +23,6 @@ func Make() *http.Server {
 		log.Fatalf("wrong format server.idle_timeout: %v", err)
 	}
 
-	// pp.Print(cfg.GetStringSlice("proxy.allowed_headers"))
 	r := chi.NewRouter()
 	routes.Register(r)
 
@@ -32,6 +31,6 @@ func Make() *http.Server {
 		ReadTimeout:  timeout,
 		WriteTimeout: timeout,
 		IdleTimeout:  idleTimeout,
-		// Handler:      r,
+		Handler:      r,
 	}
 }

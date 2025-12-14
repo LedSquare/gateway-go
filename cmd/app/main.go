@@ -15,7 +15,7 @@ func main() {
 
 	go func() {
 		if err := srv.ListenAndServe(); err != nil {
-			log.Fatalf("failed to start server: %s", err.Error())
+			log.Fatalf("server is down: %s", err.Error())
 		}
 	}()
 
